@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>undetek.win</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            cursor: pointer; 
+        }
+        #playButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #000;
+            color: #fff;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        #videoContainer {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+        }
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="playButton">click</button>
+    <div id="videoContainer">
+        <video autoplay muted loop>
+            <source src="ezgif-7-2df7c6b585.mp4" type="video/mp4">
+        </video>
+        <audio id="backgroundMusic" loop>
+            <source src="bytes song.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <script>
+        const playButton = document.getElementById('playButton');
+        const videoContainer = document.getElementById('videoContainer');
+        const audio = document.getElementById('backgroundMusic');
+        
+        playButton.addEventListener('click', () => {
+            audio.volume = 1.0; 
+            audio.play();
+            videoContainer.style.display = 'block';
+            playButton.style.display = 'none'; 
+        });
+        
+        document.body.addEventListener('click', () => {
+            if (playButton.style.display !== 'none') {
+                audio.volume = 1.0;
+                audio.play();
+                videoContainer.style.display = 'block';
+                playButton.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
